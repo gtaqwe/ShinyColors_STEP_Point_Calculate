@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>STEP Point Calculator</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <fieldset>
+      <legend><h3>성장</h3></legend>
+      <div>
+        <input
+          type="checkbox"
+          id="showUpPointCheck"
+          name="showUpPointCheck"
+          onchange="init()"
+          checked
+        />
+
+        <label for="showUpPointCheck">1회UP당 필요 포인트 표시</label>
+      </div>
+      <!-- Vocal -->
+      <div style="display: flex">
+        <fieldset>
+          <legend><h3>Vocal</h3></legend>
+          <div class="inputItems">
+            <div style="display: flex">
+              <input
+                type="number"
+                id="VocalStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Vocal', this.value)"
+              />
+            </div>
+            <div></div>
+            <div id="VocalStatusPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>Vocal 상한</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="VocalMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Vocal', this.value)"
+              />
+            </div>
+            <div id="VocalMaximumPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+      </div>
+      <!-- Dance -->
+      <div style="display: flex">
+        <fieldset>
+          <legend><h3>Dance</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="DanceStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Dance', this.value)"
+              />
+            </div>
+            <div id="DanceStatusPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>Dance 상한</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="DanceMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Dance', this.value)"
+              />
+            </div>
+            <div id="DanceMaximumPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+      </div>
+      <!-- Visual -->
+      <div style="display: flex">
+        <fieldset>
+          <legend><h3>Visual</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="VisualStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Visual', this.value)"
+              />
+            </div>
+            <div id="VisualStatusPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>Visual 상한</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="VisualMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Visual', this.value)"
+              />
+            </div>
+            <div id="VisualMaximumPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+      </div>
+      <!-- Mental -->
+      <div style="display: flex">
+        <fieldset>
+          <legend><h3>Mental</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="MentalStatus"
+                min="0"
+                max="500"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Mental', this.value)"
+              />
+            </div>
+            <div id="MentalStatusPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>Mental 상한</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="MentalMaximum"
+                min="0"
+                max="220"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Mental', this.value)"
+              />
+            </div>
+            <div id="MentalMaximumPoint" class="pointTable"></div>
+          </div>
+        </fieldset>
+      </div>
+      <!-- SP -->
+      <div style="display: flex">
+        <fieldset>
+          <legend><h3>SP</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="SpStatus1"
+                min="0"
+                max="5000"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Sp1', this.value)"
+              />
+            </div>
+            <div id="SpStatus1Point" class="pointTable"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><h3>SP</h3></legend>
+          <div class="inputItems">
+            <div>
+              <input
+                type="number"
+                id="SpStatus2"
+                min="0"
+                max="5000"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.id, 'Sp2', this.value)"
+              />
+            </div>
+            <div id="SpStatus2Point" class="pointTable"></div>
+          </div>
+        </fieldset>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><h3>결과</h3></legend>
+
+      <div style="display: block">
+        <fieldset>
+          <legend><h3>전체 필요 포인트</h3></legend>
+          <div id="ResultSpendPoint" class="pointTable"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend><h3>상승 스탯</h3></legend>
+          <div id="ResultStat" class="pointTable"></div>
+        </fieldset>
+      </div>
+    </fieldset>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="Script.js"></script>
+  </body>
+  <footer>
+    <hr />
+    <div>Made by ZEED</div>
+  </footer>
+</html>

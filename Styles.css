@@ -1,0 +1,33 @@
+div {
+  margin: 5px;
+}
+
+h3 {
+  margin: 5px 0px;
+}
+
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 3px 7px;
+}
+
+input[type="number"] {
+  width: 100px;
+  font-size: large;
+}
+
+.inputItems {
+  min-width: 160px;
+  display: inline-block;
+}
+
+.pointTable{
+  text-align: center
+}
+
+footer {
+  text-align: center;
+  font-size: 10px;
+}
