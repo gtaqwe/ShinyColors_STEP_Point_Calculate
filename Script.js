@@ -33,41 +33,64 @@ init();
 function init() {
   for (let i = 0; i < Object.keys(INPUT_LIST).length; i++) {
     setValidData(INPUT_LIST[i].id);
-    createSpendPointTable(INPUT_LIST[i].id, INPUT_LIST[i].type, $(`#${INPUT_LIST[i].id}`).val());
+
+    createSpendPointTable(
+      INPUT_LIST[i].id,
+      INPUT_LIST[i].type,
+      $(`#Expect${INPUT_LIST[i].id}`).val()
+    );
+    createSpendPointTable(INPUT_LIST[i].id, INPUT_LIST[i].type, $(`#Now${INPUT_LIST[i].id}`).val());
   }
 
   calculateResultPoint();
   calculateResultStat();
 }
 
-function modifySpendPoint(inputId, statType, currnetCount) {
-  setValidData(inputId);
-  createSpendPointTable(inputId, statType, currnetCount);
+function modifySpendPoint(inputName, statType, currnetCount) {
+  setValidData(inputName);
+  createSpendPointTable(inputName, statType, currnetCount);
   calculateResultPoint();
   calculateResultStat();
 }
 
-function setValidData(inputId) {
-  const nowVal = Number($(`#${inputId}`).val());
-  const minVal = Number($(`#${inputId}`).attr("min"));
-  const maxVal = Number($(`#${inputId}`).attr("max"));
+function setValidData(inputName) {
+  const expectVal = Number($(`#Expect${inputName}`).val());
+  const expectMinVal = Number($(`#Expect${inputName}`).attr("min"));
+  const expectMaxVal = Number($(`#Expect${inputName}`).attr("max"));
 
-  if (nowVal < minVal) {
-    $(`#${inputId}`).val(minVal);
+  if (expectVal < expectMinVal) {
+    $(`#Expect${inputName}`).val(expectMinVal);
   }
 
-  if (nowVal > maxVal) {
-    $(`#${inputId}`).val(maxVal);
+  if (expectVal > expectMaxVal) {
+    $(`#Expect${inputName}`).val(expectMaxVal);
+  }
+
+  const nowVal = Number($(`#Now${inputName}`).val());
+  const nowMinVal = Number($(`#Now${inputName}`).attr("min"));
+  const nowMaxVal = Number($(`#Now${inputName}`).attr("max"));
+
+  if (nowVal < nowMinVal) {
+    $(`#Now${inputName}`).val(nowMinVal);
+  }
+
+  if (nowVal > nowMaxVal) {
+    $(`#Now${inputName}`).val(nowMaxVal);
+  }
+
+  if (nowVal > expectVal) {
+    $(`#Now${inputName}`).val(expectVal);
   }
 }
 
-function createSpendPointTable(inputId, statType, currnetCount) {
+function createSpendPointTable(inputName, statType, currnetCount) {
+  let divId = inputName + "Point";
   if ($(`#showUpPointCheck`).prop("checked") == false) {
-    let divId = inputId + "Point";
     $(`#${divId}`).html("");
     return;
   }
-  let pointTableId = inputId + "Table";
+
+  let pointTableId = inputName + "Table";
   let table = `<table id="${pointTableId}">`;
 
   table += "<thead>";
@@ -88,7 +111,6 @@ function createSpendPointTable(inputId, statType, currnetCount) {
   table += "</tbody>";
   table += "</table>";
 
-  let divId = inputId + "Point";
   $(`#${divId}`).html(table);
 }
 
@@ -181,52 +203,94 @@ function calculateResultPoint() {
 function calculatePoint() {
   let totalPointlist = [0, 0, 0, 0, 0];
   let pointResult;
+  let statusId;
 
   // Vocal
-  pointResult = calculateUpCount(Number($(`#VocalStatus`).val()));
+  statusId = "VocalStatus";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[0] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[0] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
-  pointResult = calculateUpCount(Number($(`#VocalMaximum`).val()));
+  statusId = "VocalMaximum";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[0] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[0] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
   // Dance
-  pointResult = calculateUpCount(Number($(`#DanceStatus`).val()));
+  statusId = "DanceStatus";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[1] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[1] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
-  pointResult = calculateUpCount(Number($(`#DanceMaximum`).val()));
+  statusId = "DanceMaximum";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[1] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[1] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
   // Visual
-  pointResult = calculateUpCount(Number($(`#VisualStatus`).val()));
+  statusId = "VisualStatus";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[2] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[2] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
-  pointResult = calculateUpCount(Number($(`#VisualMaximum`).val()));
+  statusId = "VisualMaximum";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[2] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[2] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
   // Mental
-  pointResult = calculateUpCount(Number($(`#MentalStatus`).val()));
+  statusId = "MentalStatus";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[3] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[3] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
-  pointResult = calculateUpCount(Number($(`#MentalMaximum`).val()));
+  statusId = "MentalMaximum";
+  pointResult = calculateUpCount(Number($(`#Expect${statusId}`).val()));
   totalPointlist[3] += pointResult[0];
   totalPointlist[4] += pointResult[1];
+  pointResult = calculateUpCount(Number($(`#Now${statusId}`).val()));
+  totalPointlist[3] -= pointResult[0];
+  totalPointlist[4] -= pointResult[1];
 
   // SP
-  pointResult = Number($(`#SpStatus1`).val()) * 30;
+  statusId = "SpStatus1";
+  pointResult = Number($(`#Expect${statusId}`).val()) * 30;
   totalPointlist[4] += pointResult;
+  pointResult = Number($(`#Now${statusId}`).val()) * 30;
+  totalPointlist[4] -= pointResult;
 
-  pointResult = Number($(`#SpStatus2`).val()) * 20;
+  statusId = "SpStatus2";
+  pointResult = Number($(`#Expect${statusId}`).val()) * 20;
   totalPointlist[0] += pointResult;
   totalPointlist[1] += pointResult;
   totalPointlist[2] += pointResult;
   totalPointlist[3] += pointResult;
+  pointResult = Number($(`#Now${statusId}`).val()) * 20;
+  totalPointlist[0] -= pointResult;
+  totalPointlist[1] -= pointResult;
+  totalPointlist[2] -= pointResult;
+  totalPointlist[3] -= pointResult;
 
   return totalPointlist;
 }
@@ -297,12 +361,17 @@ function calculateResultStat() {
 
   let indexCount = 0;
   for (let i = 0; i < Object.keys(INPUT_LIST).length - 2; i++, indexCount++) {
-    table += `<td>${Number($(`#${INPUT_LIST[i].id}`).val()) * 10}</td>`;
+    let resVal =
+      (Number($(`#Expect${INPUT_LIST[i].id}`).val()) - Number($(`#Now${INPUT_LIST[i].id}`).val())) *
+      10;
+    table += `<td>${resVal}</td>`;
   }
 
   let spRes =
-    Number($(`#${INPUT_LIST[indexCount].id}`).val()) +
-    Number($(`#${INPUT_LIST[indexCount + 1].id}`).val());
+    Number($(`#Expect${INPUT_LIST[indexCount].id}`).val()) +
+    Number($(`#Expect${INPUT_LIST[indexCount + 1].id}`).val()) -
+    (Number($(`#Now${INPUT_LIST[indexCount].id}`).val()) +
+      Number($(`#Now${INPUT_LIST[indexCount + 1].id}`).val()));
 
   table += `<td> ${spRes * 10}</td>`;
 

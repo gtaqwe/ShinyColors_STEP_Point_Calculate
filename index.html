@@ -26,18 +26,32 @@
         <fieldset>
           <legend><h3>Vocal</h3></legend>
           <div class="inputItems">
-            <div style="display: flex">
+            <div>
+              예정
               <input
                 type="number"
-                id="VocalStatus"
+                id="ExpectVocalStatus"
+                name="VocalStatus"
                 min="0"
                 max="230"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Vocal', this.value)"
+                onchange="modifySpendPoint(this.name, 'Vocal', this.value)"
               />
             </div>
-            <div></div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowVocalStatus"
+                name="VocalStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Vocal', this.value)"
+              />
+            </div>
             <div id="VocalStatusPoint" class="pointTable"></div>
           </div>
         </fieldset>
@@ -45,14 +59,29 @@
           <legend><h3>Vocal 상한</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="VocalMaximum"
+                id="ExpectVocalMaximum"
+                name="VocalMaximum"
                 min="0"
                 max="140"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Vocal', this.value)"
+                onchange="modifySpendPoint(this.name, 'Vocal', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowVocalMaximum"
+                name="VocalMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Vocal', this.value)"
               />
             </div>
             <div id="VocalMaximumPoint" class="pointTable"></div>
@@ -65,14 +94,29 @@
           <legend><h3>Dance</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="DanceStatus"
+                id="ExpectDanceStatus"
+                name="DanceStatus"
                 min="0"
                 max="230"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Dance', this.value)"
+                onchange="modifySpendPoint(this.name, 'Dance', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowDanceStatus"
+                name="DanceStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Dance', this.value)"
               />
             </div>
             <div id="DanceStatusPoint" class="pointTable"></div>
@@ -82,14 +126,29 @@
           <legend><h3>Dance 상한</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="DanceMaximum"
+                id="ExpectDanceMaximum"
+                name="DanceMaximum"
                 min="0"
                 max="140"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Dance', this.value)"
+                onchange="modifySpendPoint(this.name, 'Dance', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowDanceMaximum"
+                name="DanceMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Dance', this.value)"
               />
             </div>
             <div id="DanceMaximumPoint" class="pointTable"></div>
@@ -102,14 +161,29 @@
           <legend><h3>Visual</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="VisualStatus"
+                id="ExpectVisualStatus"
+                name="VisualStatus"
                 min="0"
                 max="230"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Visual', this.value)"
+                onchange="modifySpendPoint(this.name, 'Visual', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowVisualStatus"
+                name="VisualStatus"
+                min="0"
+                max="230"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Visual', this.value)"
               />
             </div>
             <div id="VisualStatusPoint" class="pointTable"></div>
@@ -119,14 +193,29 @@
           <legend><h3>Visual 상한</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="VisualMaximum"
+                id="ExpectVisualMaximum"
+                name="VisualMaximum"
                 min="0"
                 max="140"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Visual', this.value)"
+                onchange="modifySpendPoint(this.name, 'Visual', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowVisualMaximum"
+                name="VisualMaximum"
+                min="0"
+                max="140"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Visual', this.value)"
               />
             </div>
             <div id="VisualMaximumPoint" class="pointTable"></div>
@@ -139,14 +228,29 @@
           <legend><h3>Mental</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="MentalStatus"
+                id="ExpectMentalStatus"
+                name="MentalStatus"
                 min="0"
                 max="500"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Mental', this.value)"
+                onchange="modifySpendPoint(this.name, 'Mental', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowMentalStatus"
+                name="MentalStatus"
+                min="0"
+                max="500"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Mental', this.value)"
               />
             </div>
             <div id="MentalStatusPoint" class="pointTable"></div>
@@ -156,14 +260,29 @@
           <legend><h3>Mental 상한</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="MentalMaximum"
+                id="ExpectMentalMaximum"
+                name="MentalMaximum"
                 min="0"
                 max="220"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Mental', this.value)"
+                onchange="modifySpendPoint(this.name, 'Mental', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowMentalMaximum"
+                name="MentalMaximum"
+                min="0"
+                max="220"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Mental', this.value)"
               />
             </div>
             <div id="MentalMaximumPoint" class="pointTable"></div>
@@ -176,14 +295,29 @@
           <legend><h3>SP</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="SpStatus1"
+                id="ExpectSpStatus1"
+                name="SpStatus1"
                 min="0"
                 max="5000"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Sp1', this.value)"
+                onchange="modifySpendPoint(this.name, 'Sp1', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowSpStatus1"
+                name="SpStatus1"
+                min="0"
+                max="5000"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Sp1', this.value)"
               />
             </div>
             <div id="SpStatus1Point" class="pointTable"></div>
@@ -193,14 +327,29 @@
           <legend><h3>SP</h3></legend>
           <div class="inputItems">
             <div>
+              예정
               <input
                 type="number"
-                id="SpStatus2"
+                id="ExpectSpStatus2"
+                name="SpStatus2"
                 min="0"
                 max="5000"
                 value="0"
                 step="1"
-                onchange="modifySpendPoint(this.id, 'Sp2', this.value)"
+                onchange="modifySpendPoint(this.name, 'Sp2', this.value)"
+              />
+            </div>
+            <div>
+              현재
+              <input
+                type="number"
+                id="NowSpStatus2"
+                name="SpStatus2"
+                min="0"
+                max="5000"
+                value="0"
+                step="1"
+                onchange="modifySpendPoint(this.name, 'Sp2', this.value)"
               />
             </div>
             <div id="SpStatus2Point" class="pointTable"></div>
