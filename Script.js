@@ -69,6 +69,7 @@ function setValidData(inputName) {
   const nowVal = Number($(`#Now${inputName}`).val());
   const nowMinVal = Number($(`#Now${inputName}`).attr("min"));
   const nowMaxVal = Number($(`#Now${inputName}`).attr("max"));
+  $(`#Expect${inputName}`).attr({ min: nowVal });
 
   if (nowVal < nowMinVal) {
     $(`#Now${inputName}`).val(nowMinVal);
@@ -79,7 +80,7 @@ function setValidData(inputName) {
   }
 
   if (nowVal > expectVal) {
-    $(`#Now${inputName}`).val(expectVal);
+    $(`#Expect${inputName}`).val(nowVal);
   }
 }
 
